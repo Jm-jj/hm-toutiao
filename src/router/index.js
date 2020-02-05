@@ -9,3 +9,4 @@ const router = new VueRouter({
   routers: []
 })
 // 导出
+export default router

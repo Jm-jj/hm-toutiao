@@ -9,7 +9,7 @@ Vue.use(ElementUI);
 // import router from './router/index.js'
 //默认访问index.js文件
 //@代表src 准确
-import router from '@/router'
+import router from "@/router";
 
 // 配置vue框架的日志级别 productionTip
 // false 不是生产环境级别日志，开发环境日志，详细
@@ -18,11 +18,11 @@ Vue.config.productionTip = false;
 
 // 根实例
 // 使用App.vue 注释渲染级别 #app容器中
-// (components共用级别组件) (views页面级别的组件)
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
+  router
 }).$mount("#app");
 
-// main.js 的职责
-//项目需要的资源都需要导入到main.js
-//创建一个vue根实例
+// main.js的职责
+// 1. 依赖项目需要的资源 (公用功能模块，需要导入main.js)
+// 2. 创建一个Vue根实例
