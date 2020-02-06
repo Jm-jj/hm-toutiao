@@ -17,7 +17,7 @@ import router from "@/router";
 Vue.config.productionTip = false;
 
 // 根实例
-// 使用App.vue 注释渲染级别 #app容器中
+// 使用App.vue组件渲染到 #app容器中
 new Vue({
   render: h => h(App),
   router
