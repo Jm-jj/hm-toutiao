@@ -4,13 +4,16 @@ import App from "./App.vue";
 
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-Vue.use(ElementUI);
 
 // import router from './router/index.js'
 //默认访问index.js文件
 //@代表src 准确
 import router from "@/router";
 
+import axios from "axios";
+
+Vue.use(ElementUI);
+Vue.prototype.$http = axios
 // 配置vue框架的日志级别 productionTip
 // false 不是生产环境级别日志，开发环境日志，详细
 // true 生产环境级别日志，上线之后部署服务器之后，日志简单
