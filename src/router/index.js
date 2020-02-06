@@ -7,9 +7,10 @@ import Login from '@/views/login'
 Vue.use(VueRouter)
 // 初始化
 const router = new VueRouter({
-  routers: [
-    {path:'/login',component:Login}
-  ]
+  routes: [{
+    path: '/login',
+    component: Login
+  }]
 })
 // 导出
 export default router
