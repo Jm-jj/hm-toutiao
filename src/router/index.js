@@ -5,6 +5,8 @@ import VueRouter from "vue-router";
 import Vue from "vue";
 import Login from "@/views/login";
 import home from "@/views/home";
+import Welcome from "@/views/welcome";
+
 Vue.use(VueRouter);
 // 初始化
 const router = new VueRouter({
@@ -15,7 +17,10 @@ const router = new VueRouter({
     },
     {
       path: "/",
-      component: home
+      component: home,
+      children: [
+        {path:'/',component:Welcome}
+      ]
     }
   ]
 });
