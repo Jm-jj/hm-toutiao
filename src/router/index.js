@@ -6,21 +6,26 @@ import Vue from "vue";
 import Login from "@/views/login";
 import home from "@/views/home";
 import Welcome from "@/views/welcome";
+import NotFound from "@/views/404"
 
 Vue.use(VueRouter);
 // 初始化
 const router = new VueRouter({
-  routes: [
-    {
+  routes: [{
       path: "/login",
       component: Login
     },
     {
       path: "/",
       component: home,
-      children: [
-        {path:'/',component:Welcome}
-      ]
+      children: [{
+        path: '/',
+        component: Welcome
+      }]
+    },
+    {
+      path: '*',
+      component: NotFound
     }
   ]
 });
