@@ -1,6 +1,7 @@
 //进行路由初始化 和 配置
 //导入
 import VueRouter from "vue-router";
+import auth from '@/utils/auth'
 //注册
 import Vue from "vue";
 import Login from "@/views/login";
@@ -29,5 +30,11 @@ const router = new VueRouter({
     }
   ]
 });
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/login' && !auth.getUser().token) {
+    return next('/login')
+  }
+  next()
+})
 // 导出
 export default router;
