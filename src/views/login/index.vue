@@ -2,9 +2,17 @@
   <div class="container-login">
     <el-card class="my-card">
       <img src="../../assets/logo_index.png" alt />
-      <el-form ref="loginForm" :model="loginForm" :rules="loginRules" status-icon>
+      <el-form
+        ref="loginForm"
+        :model="loginForm"
+        :rules="loginRules"
+        status-icon
+      >
         <el-form-item prop="mobile">
-          <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
+          <el-input
+            v-model="loginForm.mobile"
+            placeholder="请输入手机号"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input
@@ -15,10 +23,14 @@
           <el-button>发送验证码</el-button>
         </el-form-item>
         <el-form-item>
-          <el-checkbox :value="true">我已阅读并同意用户协议和隐私条款</el-checkbox>
+          <el-checkbox :value="true"
+            >我已阅读并同意用户协议和隐私条款</el-checkbox
+          >
         </el-form-item>
         <el-form-item>
-          <el-button @click="login" type="primary" style="width:100%">登录</el-button>
+          <el-button @click="login" type="primary" style="width:100%"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>
@@ -56,20 +68,27 @@ export default {
   },
   methods: {
     login() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this.$http
-            .post(
-              "http://ttapi.research.itcast.cn/mp/v1_0/authorizations",
-              this.loginForm
-            )
-            .then(res => {
-              auth.setUser(res.data.data);
-              this.$router.push("/");
-            })
-            .catch(() => {
-              this.$message.error("手机号或验证码错误");
-            });
+          // this.$http
+          //   .post(
+          //     "http://ttapi.research.itcast.cn/mp/v1_0/authorizations",
+          //     this.loginForm
+          //   )
+          //   .then(res => {
+          //     auth.setUser(res.data.data);
+          //     this.$router.push("/");
+          //   })
+          //   .catch(() => {
+          //     this.$message.error("手机号或验证码错误");
+          //   });
+          try {
+            const res = await this.$http.post("authorizations", this.loginForm);
+            auth.setUser(res.data.data);
+            this.$router.push("/");
+          } catch (e) {
+            this.$message.error("手机号或验证码错误");
+          }
         }
       });
     }
