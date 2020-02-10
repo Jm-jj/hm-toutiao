@@ -10,7 +10,7 @@ import "element-ui/lib/theme-chalk/index.css";
 //@代表src 准确
 import router from "@/router";
 
-import axios from "axios";
+import axios from "@/api";
 
 Vue.use(ElementUI);
 Vue.prototype.$http = axios
