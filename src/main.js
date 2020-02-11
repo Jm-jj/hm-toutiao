@@ -12,6 +12,9 @@ import router from "@/router";
 
 import axios from "@/api";
 
+// 使用自己封装的插件
+import plugin from '@/plugin'
+Vue.use(plugin)
 Vue.use(ElementUI);
 Vue.prototype.$http = axios
 // 配置vue框架的日志级别 productionTip
