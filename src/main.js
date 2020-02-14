@@ -12,6 +12,8 @@ import router from "@/router";
 
 import axios from "@/api";
 
+import '@/styles/index.less'
+
 // 使用自己封装的插件
 import plugin from '@/plugin'
 Vue.use(plugin)
