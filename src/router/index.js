@@ -11,6 +11,7 @@ import NotFound from "@/views/404";
 import Article from '@/views/article';
 import Image from '@/views/image';
 import Publish from '@/views/publish';
+import Comment from '@/views/comment'
 
 Vue.use(VueRouter);
 // 初始化
@@ -36,6 +37,10 @@ const router = new VueRouter({
         {
           path: '/publish',
           component: Publish
+        },
+        {
+          path: '/comment',
+          component: Comment
         }
       ]
     },
