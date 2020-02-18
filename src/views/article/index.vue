@@ -17,19 +17,9 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道：">
-          <el-select
-            @change="changeChannel"
-            v-model="filterData.channel_id"
-            placeholder="请选择"
-            clearable
-          >
-            <el-option
-              v-for="item in channelOptions"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
+          <!-- 使用自己封装组件 -->
+          <my-channel v-model="filterData.channel_id"></my-channel>
+          <!-- <my-channel :value="filterData.channel_id" @input="filterData.channel_id=$event"></my-channel> -->
         </el-form-item>
         <el-form-item label="日期：">
           <el-date-picker
@@ -53,15 +43,9 @@
       <el-table :data="articles">
         <el-table-column label="封面">
           <template slot-scope="scope">
-            <el-image
-              :src="scope.row.cover.images[0]"
-              style="width:150px;height:100px"
-            >
+            <el-image :src="scope.row.cover.images[0]" style="width:150px;height:100px">
               <div slot="error">
-                <img
-                  src="../../assets/error.gif"
-                  style="width:150px;height:100px"
-                />
+                <img src="../../assets/error.gif" style="width:150px;height:100px" />
               </div>
             </el-image>
           </template>
@@ -71,12 +55,8 @@
           <template slot-scope="scope">
             <el-tag v-if="scope.row.status === 0" type="info">草稿</el-tag>
             <el-tag v-if="scope.row.status === 1">待审核</el-tag>
-            <el-tag v-if="scope.row.status === 2" type="success"
-              >审核通过</el-tag
-            >
-            <el-tag v-if="scope.row.status === 3" type="warning"
-              >审核失败</el-tag
-            >
+            <el-tag v-if="scope.row.status === 2" type="success">审核通过</el-tag>
+            <el-tag v-if="scope.row.status === 3" type="warning">审核失败</el-tag>
             <el-tag v-if="scope.row.status === 4" type="danger">已删除</el-tag>
           </template>
         </el-table-column>
@@ -138,15 +118,15 @@ export default {
     };
   },
   created() {
-    this.getChannelOptions();
+    // this.getChannelOptions();
     this.getArticles();
   },
   methods: {
     // 获取频道数据
-    async getChannelOptions() {
-      const res = await this.$http.get("channels");
-      this.channelOptions = res.data.data.channels;
-    },
+    // async getChannelOptions() {
+    //   const res = await this.$http.get("channels");
+    //   this.channelOptions = res.data.data.channels;
+    // },
     // 获取文章数据
     async getArticles() {
       const res = await this.$http.get("articles", { params: this.filterData });
