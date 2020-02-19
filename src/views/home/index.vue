@@ -10,7 +10,7 @@
         style="border-right:none"
         :collapse="!isOpen"
         :collapse-transition="false"
-        router=""
+        router
       >
         <el-menu-item index="/">
           <i class="el-icon-s-home"></i>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import eventBus from "@/eventBus";
 import auth from "@/utils/auth";
 export default {
   name: "app-home",
@@ -81,6 +82,12 @@ export default {
     const user = auth.getUser();
     this.name = user.name;
     this.photo = user.photo;
+    eventBus.$on("updateUserName", name => {
+      this.name = name;
+    });
+    eventBus.$on("updateUserPhoto", photo => {
+      this.photo = photo;
+    });
   },
   methods: {
     toggleMenu() {
